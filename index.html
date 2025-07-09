@@ -8,17 +8,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tollhub - Your Daily Tools, All in One Place</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-blue: #2563eb;
             --dark-blue: #1e40af;
             --light-blue: #93c5fd;
+            --accent-purple: #7c3aed;
+            --accent-green: #059669;
             --bg-gray: #f8fafc;
             --text-dark: #1e293b;
             --text-light: #64748b;
             --white: #ffffff;
             --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            --rounded: 8px;
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --rounded: 12px;
+            --rounded-lg: 16px;
             --transition: all 0.3s ease;
         }
         
@@ -26,7 +34,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         body {
@@ -63,6 +71,8 @@
             font-weight: 700;
             color: var(--primary-blue);
             text-decoration: none;
+            font-family: 'Poppins', sans-serif;
+            letter-spacing: -0.5px;
         }
         
         .logo span {
@@ -109,16 +119,32 @@
         
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, var(--primary-blue), var(--dark-blue));
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--accent-purple) 50%, var(--dark-blue) 100%);
             color: var(--white);
-            padding: 80px 0;
+            padding: 100px 0;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g fill="%23ffffff" fill-opacity="0.05"><circle cx="30" cy="30" r="1"/></g></svg>');
+            pointer-events: none;
         }
         
         .hero h1 {
             font-size: 2.5rem;
             margin-bottom: 20px;
             line-height: 1.2;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            letter-spacing: -1px;
         }
         
         .hero p {
@@ -132,17 +158,36 @@
             display: inline-block;
             background-color: var(--white);
             color: var(--primary-blue);
-            padding: 12px 30px;
-            border-radius: var(--rounded);
+            padding: 16px 40px;
+            border-radius: var(--rounded-lg);
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 700;
+            font-size: 1.1rem;
             transition: var(--transition);
             margin-bottom: 40px;
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.1), transparent);
+            transition: var(--transition);
         }
         
         .cta-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 15px 30px rgba(255, 255, 255, 0.4);
+        }
+        
+        .cta-button:hover::before {
+            left: 100%;
         }
         
         .tool-icons {
@@ -167,16 +212,17 @@
         
         /* Search */
         .search-section {
-            padding: 30px 0;
+            padding: 40px 0;
             background-color: var(--white);
-            margin-top: -40px;
-            border-radius: var(--rounded);
-            box-shadow: var(--shadow);
+            margin-top: -50px;
+            border-radius: var(--rounded-lg);
+            box-shadow: var(--shadow-lg);
             position: relative;
             z-index: 10;
             max-width: 900px;
             margin-left: auto;
             margin-right: auto;
+            border: 1px solid rgba(226, 232, 240, 0.3);
         }
         
         .search-container {
@@ -191,30 +237,34 @@
         
         .search-bar input {
             flex: 1;
-            padding: 15px 20px;
-            border: 1px solid #e2e8f0;
+            padding: 18px 24px;
+            border: 2px solid #e2e8f0;
             border-radius: var(--rounded) 0 0 var(--rounded);
             font-size: 16px;
             outline: none;
             transition: var(--transition);
+            font-family: 'Inter', sans-serif;
         }
         
         .search-bar input:focus {
             border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
         }
         
         .search-bar button {
-            background-color: var(--primary-blue);
+            background: linear-gradient(135deg, var(--primary-blue), var(--accent-purple));
             color: var(--white);
             border: none;
-            padding: 0 25px;
+            padding: 0 30px;
             border-radius: 0 var(--rounded) var(--rounded) 0;
             cursor: pointer;
             transition: var(--transition);
+            font-size: 18px;
         }
         
         .search-bar button:hover {
-            background-color: var(--dark-blue);
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
         }
         
         /* Tools Sections */
@@ -231,6 +281,9 @@
             font-size: 1.8rem;
             margin-bottom: 10px;
             color: var(--text-dark);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            letter-spacing: -0.5px;
         }
         
         .section-header p {
@@ -247,33 +300,62 @@
         
         .tool-card {
             background-color: var(--white);
-            border-radius: var(--rounded);
-            padding: 25px;
+            border-radius: var(--rounded-lg);
+            padding: 30px;
             box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid rgba(226, 232, 240, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .tool-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--accent-purple));
+            transform: scaleX(0);
             transition: var(--transition);
         }
         
         .tool-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--light-blue);
+        }
+        
+        .tool-card:hover::before {
+            transform: scaleX(1);
         }
         
         .tool-icon-container {
-            width: 50px;
-            height: 50px;
-            background-color: var(--light-blue);
-            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--accent-purple));
+            border-radius: var(--rounded);
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 15px;
-            color: var(--primary-blue);
-            font-size: 20px;
+            margin-bottom: 20px;
+            color: var(--white);
+            font-size: 24px;
+            transition: var(--transition);
+        }
+        
+        .tool-card:hover .tool-icon-container {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 8px 15px -3px rgba(37, 99, 235, 0.3);
         }
         
         .tool-card h3 {
             font-size: 1.1rem;
             margin-bottom: 10px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            letter-spacing: -0.3px;
         }
         
         .tool-card p {
@@ -284,18 +366,36 @@
         
         .tool-button {
             display: inline-block;
-            background-color: var(--primary-blue);
+            background: linear-gradient(135deg, var(--primary-blue), var(--accent-purple));
             color: var(--white);
-            padding: 8px 20px;
+            padding: 12px 24px;
             border-radius: var(--rounded);
             text-decoration: none;
             font-size: 0.9rem;
-            font-weight: 500;
+            font-weight: 600;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .tool-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
             transition: var(--transition);
         }
         
         .tool-button:hover {
-            background-color: var(--dark-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px -3px rgba(37, 99, 235, 0.4);
+        }
+        
+        .tool-button:hover::before {
+            left: 100%;
         }
         
         /* Footer */
@@ -318,6 +418,8 @@
             color: var(--white);
             margin-bottom: 15px;
             display: block;
+            font-family: 'Poppins', sans-serif;
+            letter-spacing: -0.5px;
         }
         
         .footer-logo span {
@@ -636,9 +738,11 @@
                     <div class="tool-icon-container">
                         <i class="fas fa-sync-alt"></i>
                     </div>
-                    <h3>Image Rotator/Flipper</h3>
-                    <p>Rotate or flip images horizontally/vertically</p>
-                    <a href="#" class="tool-button">Use Tool</a>
+                    <h3>Image To Pdf</h3>
+                    Image to Pdf convert
+                Multiple images to a single PDF file
+                    </p>
+                    <a href="imag-to-pdf.html" class="tool-button">Use Tool</a>
                 </div>
             </div>
         </div>
@@ -668,7 +772,7 @@
                     </div>
                     <h3>PDF Compressor</h3>
                     <p>Reduce PDF file size while maintaining quality</p>
-                    <a href="#" class="tool-button">Use Tool</a>
+                    <a href="pdf-compressor.html" class="tool-button">Use Tool</a>
                 </div>
                 
                 <div class="tool-card">
@@ -677,7 +781,7 @@
                     </div>
                     <h3>PDF Merger & Splitter</h3>
                     <p>Combine multiple PDFs or split pages from a PDF</p>
-                    <a href="#" class="tool-button">Use Tool</a>
+                    <a href="pdf-marge-and-split.html" class="tool-button">Use Tool</a>
                 </div>
                 
                 <div class="tool-card">
@@ -686,7 +790,7 @@
                     </div>
                     <h3>Document Converter</h3>
                     <p>Convert between various document formats</p>
-                    <a href="#" class="tool-button">Use Tool</a>
+                    <a href="document-converter.html" class="tool-button">Use Tool</a>
                 </div>
                 
                 <div class="tool-card">
@@ -695,7 +799,7 @@
                     </div>
                     <h3>PDF Lock/Unlock</h3>
                     <p>Add or remove passwords from PDF files</p>
-                    <a href="#" class="tool-button">Use Tool</a>
+                    <a href="pdf-lock-unlock.html" class="tool-button">Use Tool</a>
                 </div>
                 
                 <div class="tool-card">
@@ -704,7 +808,7 @@
                     </div>
                     <h3>eSign PDF</h3>
                     <p>Add digital signatures to your PDF documents</p>
-                    <a href="#" class="tool-button">Use Tool</a>
+                    <a href="e-sign.html" class="tool-button">Use Tool</a>
                 </div>
             </div>
         </div>
@@ -734,7 +838,7 @@
                     </div>
                     <h3>Age Calculator</h3>
                     <p>Calculate age from birth date to current date</p>
-                    <a href="#" class="tool-button">Use Tool</a>
+                    <a href="age.html" class="tool-button">Use Tool</a>
                 </div>
                 
                 <div class="tool-card">
@@ -743,7 +847,7 @@
                     </div>
                     <h3>BMI Calculator</h3>
                     <p>Calculate your Body Mass Index</p>
-                    <a href="#" class="tool-button">Use Tool</a>
+                    <a href="bmi.html" class="tool-button">Use Tool</a>
                 </div>
                 
                 <div class="tool-card">
@@ -752,7 +856,7 @@
                     </div>
                     <h3>Loan EMI Calculator</h3>
                     <p>Calculate Equated Monthly Installments for loans</p>
-                    <a href="#" class="tool-button">Use Tool</a>
+                    <a href="loan-emi.html" class="tool-button">Use Tool</a>
                 </div>
                 
                 <div class="tool-card">
@@ -761,7 +865,7 @@
                     </div>
                     <h3>GST Calculator</h3>
                     <p>Calculate Goods and Services Tax amounts</p>
-                    <a href="#" class="tool-button">Use Tool</a>
+                    <a href="gst.html" class="tool-button">Use Tool</a>
                 </div>
                 
                 <div class="tool-card">
@@ -770,7 +874,7 @@
                     </div>
                     <h3>Currency Converter</h3>
                     <p>Convert between world currencies with live rates</p>
-                    <a href="#" class="tool-button">Use Tool</a>
+                    <a href="currency.html" class="tool-button">Use Tool</a>
                 </div>
             </div>
         </div>
@@ -800,7 +904,7 @@
                     </div>
                     <h3>Word & Character Counter</h3>
                     <p>Count words, characters, sentences and paragraphs</p>
-                    <a href="#" class="tool-button">Use Tool</a>
+                    <a href="word-chracter.html" class="tool-button">Use Tool</a>
                 </div>
                 
                 <div class="tool-card">
@@ -809,7 +913,7 @@
                     </div>
                     <h3>Remove Duplicate Lines</h3>
                     <p>Clean up text by removing duplicate lines</p>
-                    <a href="#" class="tool-button">Use Tool</a>
+                    <a href="remove.html" class="tool-button">Use Tool</a>
                 </div>
                 
                 <div class="tool-card">
@@ -818,7 +922,7 @@
                     </div>
                     <h3>Text Sorter</h3>
                     <p>Sort lines of text alphabetically or numerically</p>
-                    <a href="#" class="tool-button">Use Tool</a>
+                    <a href="text-sorter.html" class="tool-button">Use Tool</a>
                 </div>
                 
                 <div class="tool-card">
@@ -827,7 +931,7 @@
                     </div>
                     <h3>Text Reverser</h3>
                     <p>Reverse text, words, or character order</p>
-                    <a href="#" class="tool-button">Use Tool</a>
+                    <a href="text-reverser.html" class="tool-button">Use Tool</a>
                 </div>
                 
                 <div class="tool-card">
@@ -836,7 +940,7 @@
                     </div>
                     <h3>Text Encryptor/Decryptor</h3>
                     <p>Encrypt and decrypt text with secure algorithms</p>
-                    <a href="#" class="tool-button">Use Tool</a>
+                    <a href="text-encrypt.html" class="tool-button">Use Tool</a>
                 </div>
             </div>
         </div>
@@ -866,7 +970,7 @@
                     </div>
                     <h3>JSON Formatter & Validator</h3>
                     <p>Format and validate JSON data for readability and correctness</p>
-                    <a href="#" class="tool-button">Use Tool</a>
+                    <a href="json-format.html" class="tool-button">Use Tool</a>
                 </div>
                 
                 <div class="tool-card">
@@ -875,7 +979,7 @@
                     </div>
                     <h3>Base64 Encoder/Decoder</h3>
                     <p>Encode and decode Base64 strings and files</p>
-                    <a href="#" class="tool-button">Use Tool</a>
+                    <a href="base64.html" class="tool-button">Use Tool</a>
                 </div>
                 
                 <div class="tool-card">
@@ -884,7 +988,7 @@
                     </div>
                     <h3>URL Encoder/Decoder</h3>
                     <p>Encode or decode URLs to make them web-safe</p>
-                    <a href="#" class="tool-button">Use Tool</a>
+                    <a href="url-encoder.html" class="tool-button">Use Tool</a>
                 </div>
                 
                 <div class="tool-card">
@@ -893,7 +997,7 @@
                     </div>
                     <h3>Color Picker & Converter</h3>
                     <p>Pick colors and convert between different color formats</p>
-                    <a href="#" class="tool-button">Use Tool</a>
+                    <a href="color-picker.html" class="tool-button">Use Tool</a>
                 </div>
                 
                 <div class="tool-card">
@@ -902,7 +1006,7 @@
                     </div>
                     <h3>Regex Tester</h3>
                     <p>Test and debug regular expressions in real-time</p>
-                    <a href="#" class="tool-button">Use Tool</a>
+                    <a href="regex.html" class="tool-button">Use Tool</a>
                 </div>
             </div>
         </div>
@@ -923,7 +1027,7 @@
                     </div>
                     <h3>Color Picker from Image</h3>
                     <p>Extract color palettes from any uploaded image</p>
-                    <a href="#" class="tool-button">Use Tool</a>
+                    <a href="color-picker-image.html" class="tool-button">Use Tool</a>
                 </div>
                 
                 <div class="tool-card">
@@ -932,7 +1036,7 @@
                     </div>
                     <h3>HEX to RGB Converter</h3>
                     <p>Convert between HEX and RGB color formats</p>
-                    <a href="#" class="tool-button">Use Tool</a>
+                    <a href="hex-to-rgb.html" class="tool-button">Use Tool</a>
                 </div>
                 
                 <div class="tool-card">
@@ -941,7 +1045,7 @@
                     </div>
                     <h3>Gradient Generator</h3>
                     <p>Create beautiful CSS gradients with custom controls</p>
-                    <a href="#" class="tool-button">Use Tool</a>
+                    <a href="gradient.html" class="tool-button">Use Tool</a>
                 </div>
                 
                 <div class="tool-card">
@@ -950,7 +1054,7 @@
                     </div>
                     <h3>Contrast Checker</h3>
                     <p>Check color contrast ratios for accessibility standards</p>
-                    <a href="#" class="tool-button">Use Tool</a>
+                    <a href="contrast.html" class="tool-button">Use Tool</a>
                 </div>
                 
                 <div class="tool-card">
@@ -959,7 +1063,7 @@
                     </div>
                     <h3>Palette Generator</h3>
                     <p>Generate harmonious color palettes for your projects</p>
-                    <a href="#" class="tool-button">Use Tool</a>
+                    <a href="palette.html" class="tool-button">Use Tool</a>
                 </div>
                 
                 <div class="tool-card">
@@ -968,7 +1072,7 @@
                     </div>
                     <h3>Color Blindness Simulator</h3>
                     <p>Simulate how colors appear to people with color vision deficiencies</p>
-                    <a href="#" class="tool-button">Use Tool</a>
+                    <a href="color-blindness.html" class="tool-button">Use Tool</a>
                 </div>
             </div>
         </div>
@@ -989,7 +1093,7 @@
                     </div>
                     <h3>Keyword Density Checker</h3>
                     <p>Analyze keyword frequency and density in your content</p>
-                    <a href="#" class="tool-button">Use Tool</a>
+                    <a href="keyword-density.html" class="tool-button">Use Tool</a>
                 </div>
                 
                 <div class="tool-card">
@@ -998,7 +1102,7 @@
                     </div>
                     <h3>Meta Tag Analyzer</h3>
                     <p>Check and analyze meta tags for SEO optimization</p>
-                    <a href="#" class="tool-button">Use Tool</a>
+                    <a href="meta-tag.html" class="tool-button">Use Tool</a>
                 </div>
                 
                 <div class="tool-card">
@@ -1007,7 +1111,7 @@
                     </div>
                     <h3>Word Counter</h3>
                     <p>Count words, characters and reading time for SEO content</p>
-                    <a href="#" class="tool-button">Use Tool</a>
+                    <a href="word-counter.html" class="tool-button">Use Tool</a>
                 </div>
             </div>
         </div>
@@ -1037,7 +1141,7 @@
                     </div>
                     <h3>Barcode Generator</h3>
                     <p>Generate barcodes in various formats for products</p>
-                    <a href="#" class="tool-button">Use Tool</a>
+                    <a href="barcode.html" class="tool-button">Use Tool</a>
                 </div>
                 
                 <div class="tool-card">
@@ -1046,7 +1150,7 @@
                     </div>
                     <h3>UUID Generator</h3>
                     <p>Generate universally unique identifiers (UUIDs)</p>
-                    <a href="#" class="tool-button">Use Tool</a>
+                    <a href="uuid.html" class="tool-button">Use Tool</a>
                 </div>
                 
                 <div class="tool-card">
@@ -1055,7 +1159,7 @@
                     </div>
                     <h3>Unit Converter</h3>
                     <p>Convert between various units of measurement</p>
-                    <a href="#" class="tool-button">Use Tool</a>
+                    <a href="unit.html" class="tool-button">Use Tool</a>
                 </div>
                 
                 <div class="tool-card">
@@ -1064,7 +1168,7 @@
                     </div>
                     <h3>Time Zone Converter</h3>
                     <p>Convert times between different time zones</p>
-                    <a href="#" class="tool-button">Use Tool</a>
+                    <a href="time-zone.html" class="tool-button">Use Tool</a>
                 </div>
                 
                 <div class="tool-card">
@@ -1073,7 +1177,7 @@
                     </div>
                     <h3>Random Number/Password Generator</h3>
                     <p>Generate secure random numbers and passwords</p>
-                    <a href="#" class="tool-button">Use Tool</a>
+                    <a href="random-number.html" class="tool-button">Use Tool</a>
                 </div>
             </div>
         </div>
